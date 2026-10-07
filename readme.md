@@ -156,11 +156,11 @@ Vyplňte rozhodovací matici. Jako vzor poslouží vyplněný sloupec pro **Vzor
 
 | Kritérium hodnocení                                                                                   | **Vzorová aplikace 0 (Vjezdová závora - VZOR)**                                                                                                                                                                           | Aplikace A (Pokojový termostat) | Aplikace B (Balicí linka) | Aplikace C (Kamerová kontrola svarů) |
 | :---------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------ | :------------------------ | :----------------------------------- |
-| **Doporučená platforma** *(MCU / PLC / iPC)*                                                          | **Programovatelné relé / kompaktní PLC** *(např. Siemens LOGO!, Eaton easyE4)*                                                                                                                                            | `...`                           | `...`                     | `...`                                |
-| **Pořizovací cena HW na 1 kus** *(nízká < 500 Kč / střední 5–30 tis. Kč / vysoká > 50 tis. Kč)*       | **Střední** *(cca 3 500 – 6 000 Kč)*                                                                                                                                                                                      | `...`                           | `...`                     | `...`                                |
-| **Primární programovací jazyk** *(C/C++/MicroPython vs. IEC 61131-3 ST/LAD vs. Python/C#/C++ pod OS)* | **FBD / LAD** *(grafické funkční bloky nebo liniové schéma dle IEC 61131-3)*                                                                                                                                              | `...`                           | `...`                     | `...`                                |
-| **Klíčový technický argument pro volbu** *(např. spotřeba, determinismus, grafický výkon)*            | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | `...`                           | `...`                     | `...`                                |
-| **Hlavní riziko při volbě špatné platformy** *(proč by neuspěly ostatní dvě varianty)*                | **MCU:** Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>**iPC:** Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba.             | `...`                           | `...`                     | `...`                                |
+| **Doporučená platforma** *(MCU / PLC / iPC)*                                                          | **Programovatelné relé / kompaktní PLC** *(např. Siemens LOGO!, Eaton easyE4)*                                                                                                                                            | MCU (např. ESP32, STM32, nRF52)                           | Kompaktní / modulární PLC (např. Siemens S7-1200 / S7-1500)                     | Průmyslové PC (iPC) (např. Beckhoff, Advantech, Siemens SIMATIC)                                |
+| **Pořizovací cena HW na 1 kus** *(nízká < 500 Kč / střední 5–30 tis. Kč / vysoká > 50 tis. Kč)*       | **Střední** *(cca 3 500 – 6 000 Kč)*                                                                                                                                                                                      | Nízká (< 500 Kč / ks při sérii 10k ks)                           | Střední (15 000 – 35 000 Kč)                     | Vysoká (> 60 000 Kč)                                |
+| **Primární programovací jazyk** *(C/C++/MicroPython vs. IEC 61131-3 ST/LAD vs. Python/C#/C++ pod OS)* | **FBD / LAD** *(grafické funkční bloky nebo liniové schéma dle IEC 61131-3)*                                                                                                                                              | C / C++ / MicroPython                           | IEC 61131-3 (LAD / ST / FBD)                     | Python / C# / C++ (s akcelerací GPU/NPU)                                |
+| **Klíčový technický argument pro volbu** *(např. spotřeba, determinismus, grafický výkon)*            | Montáž přímo na DIN lištu v rozváděči, integrovaný displej pro nastavení časovačů přímo na místě, robustní reléové výstupy pro motor a semafor, napájení 24 V DC / 230 V AC bez nutnosti vývoje vlastního plošného spoje. | Extrémně nízká spotřeba proudu (spánkové režimy pro bateriový provoz), nízké výrobní náklady při sérii 10 000 ks, integrovaný modul Wi-Fi/ZigBee.                           | Vysoký determinismus, spolehlivost 24/7, modulární I/O na DIN lištu, přehledná diagnostika a úprava programu údržbářem v LAD.                     | Vysoký výpočetní a grafický výkon (GPU/AI) pro analýzu 4K obrazu z 2× GigE kamer v reálném čase a přímá konektivita do SQL/MES databází.                                |
+| **Hlavní riziko při volbě špatné platformy** *(proč by neuspěly ostatní dvě varianty)*                | **MCU:** Nutnost vývoje vlastní desky, nízká odolnost vůči venkovnímu rušení a obtížný servis údržbou.<br>**iPC:** Zbytečně extrémní cena (> 30 tis. Kč), dlouhý start po výpadku napájení a vysoká spotřeba.             | PLC / iPC: Nelze napájet z baterie, obrovské rozměry, neakceptovatelně vysoká cena pro masovou výrobu spotřební elektroniky.                           | MCU: Složitý vývoj vlastního HW, problém se servisem. iPC: Zbytečně vysoké náklady, zranitelnost výpadkem OS pokud není použit SoftPLC.                     | MCU / PLC: Nemají dostatek operační paměti, výpočetního grafického výkonu pro AI ani rozhraní pro přenos 4K videa v reálném čase.                                |
 
 > **Kritéria hodnocení úlohy 3 (bodování a známka):**
 > - :star: **Správnost technického přiřazení platforem (30 %):** Stoprocentně logické a obhajitelné přiřazení všech 3 technologií.
@@ -211,11 +211,11 @@ Jste v roli projektanta automatizace. Zákazník poptává zhotovení řízení 
 
 | Typ signálu | Požadavek aplikace (kusy) | Popis signálů v aplikaci | Počet po započtení rezervy (+20 %) |
 | :--- | :--- | :--- | :--- |
-| **Digitální vstup (DI)** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – reléový** | `...` | `...` | `...` |
-| **Digitální výstup (DO) – tranzistorový** | `...` | `...` | `...` |
-| **Analogový vstup (AI)** | `...` | `...` | `...` |
-| **Analogový výstup (AO)** | `...` | `...` | `...` |
+| **Digitální vstup (DI)** | 4 | 3× plovákový spínač (havarijní dno, start, přepad), 1× porucha termistoru | 5 (po zaokrouhlení nahoru) |
+| **Digitální výstup (DO) – reléový** | 2 | 2× cívka stykače motorů čerpadel (spínání 230 V AC přes pomocná relé) | 3 |
+| **Digitální výstup (DO) – tranzistorový** | 1 | 1× opticko-akustický maják (24 V DC / 0,3 A) | 2 |
+| **Analogový vstup (AI)** | 1 | 1× hydrostatická sonda výšky hladiny (4–20 mA) | 2 |
+| **Analogový výstup (AO)** | 1 | 1× řízení otáček frekvenčního měniče (0–10 V) | 2 |
 
 2. **Výběr konkrétního hardwaru z katalogu výrobce:**
    - Navrhněte konkrétní přístroj z praxe (např. *Siemens LOGO! 24RCE + rozšiřující moduly*, *Siemens S7-1200 CPU 1212C/1214C DC/DC/RLY*, *Schneider Modicon M221*, *Eaton easyE4-UC-12RC1*, *WAGO 750*, případně průmyslový IoT kontrolér typu *UniPi Neuron*).
@@ -279,10 +279,10 @@ Jako vedoucí inženýr jste převzal projekt po nezkušeném brigádníkovi, kt
 
 | Oblast auditu | Zjištěná vada v amatérském návrhu | Fyzikální mechanismus selhání (proč to selže) | Následek pro stroj nebo obsluhu |
 | :--- | :--- | :--- | :--- |
-| **Elektromagnetická kompatibilita (EMC)** | `...` | Napěťové špičky z indukční zátěže hydraulických ventilů způsobí restart MCU... | `...` |
-| **Mechanická a teplotní odolnost** | PLA plast a montáž na těleso lisu | `...` | `...` |
-| **Konektivita a propojení vodičů** | DuPont propojovací kabely bez aretace | `...` | `...` |
-| **Funkční bezpečnost (Safety)** | Nouzový stop řešený softwarově v čipu | `...` | `...` |
+| **Elektromagnetická kompatibilita (EMC)** | Hobby reléový modul spínající 400V ventily bez odrušení (RC členů/varistorů). | Napěťové špičky z indukční zátěže hydraulických ventilů způsobí restart MCU... | Zasekávání procesoru, resetování programu, zamrznutí řízení a nebezpečné neřízené spínání ventilů. |
+| **Mechanická a teplotní odolnost** | PLA plast a montáž na těleso lisu | PLA plast má nízkou teplotu skelného přechodu (Tg≈60 °C) a pod vlivem stálých vibrací křehne a praská. | Deformace nebo rozpad krabičky, upadnutí Arduina, zkrat o těleso stroje a mechanické zničení desky. |
+| **Konektivita a propojení vodičů** | DuPont propojovací kabely bez aretace | Vibrace lisu způsobí uvolnění nepájených konektorů, oxidaci kontaktů a přechodový odpor. | Náhodné výpadky signálů, falešná spínání a ztráta řízení nad strojem. |
+| **Funkční bezpečnost (Safety)** | Nouzový stop řešený softwarově v čipu | Při zamrznutí procesoru či chybě programu softwarový interrupt neselže. Návrh nesplňuje normu ČSN EN ISO 13849-1.	 | Nemožnost zastavit lis při havárii. Riziko těžkého nebo smrtelného úrazu obsluhy. |
 
 2. **Návrh profesionálního nápravného řešení:**
    - Navrhněte, jakými certifikovanými průmyslovými komponenty tento celek nahradíte při zachování minimálního rozpočtu:
@@ -328,11 +328,11 @@ Představte si, že management firmy rozhoduje mezi dvěma variantami řízení 
 
 | Aspekt životního cyklu | Varianta 1 (Custom Embedded MCU) | Varianta 2 (Průmyslové PLC) |
 | :--- | :--- | :--- |
-| **Dostupnost náhradních dílů za 10 let** | `...` | `...` |
-| **Servisovatelnost podnikovým elektrikářem** | `...` | `...` |
-| **Doba odstávky linky při poruše CPU** | `...` | `...` |
-| **Cena vývojových nástrojů a licencí IDE** | `...` | `...` |
-| **Závěrečné doporučení (kterou variantu vybrat a proč)** | `...` | `...` |
+| **Dostupnost náhradních dílů za 10 let** | Nízká až nulová. Ukončení výroby čipů (obsolescence), nutnost nového vývoje vlastního PCB od nuly. | Garantovaná. Průmysloví výrobci garantují dostupnost kompatibilních dílů po dobu 10–20 let. |
+| **Servisovatelnost podnikovým elektrikářem** | Nemožná. Elektrikář nezná architekturu desky ani kód v C++ bez dokumentace od externisty. | Snadná. Běžný údržbář provádí diagnostiku v normovaném jazyce LAD/ST a výměnu modulů kus za kus. |
+| **Doba odstávky linky při poruše CPU** | Dny až týdny. Čekání na vývojáře, výrobu nového PCB a nahrávání firmwaru. | Minuty až hodiny. Výměna vadného modulu ze skladu a nahrání programu z paměťové karty. |
+| **Cena vývojových nástrojů a licencí IDE** | Nízká / Zdarma. Využití volně dostupného vývojového prostředí (Open-source IDE, GCC). | Vyšší. Jednorázový nákup inženýrského softwaru (např. Siemens TIA Portal). |
+| **Závěrečné doporučení (kterou variantu vybrat a proč)** | Nevhodné. Obrovské riziko finančních ztrát z neplánovaných odstávek vysoce převýší úsporu při nákupu HW. | DOPORUČENO. Vyšší pořizovací cena (CAPEX) se vrátí v podobě nízkých provozních nákladů (OPEX) a spolehlivosti. |
 
 > :key: **Vysvětlení pojmů a odborné zdroje:**
 > - **CAPEX (Capital Expenditure)**: Zjednodušeně jde o jednorázové kapitálové výdaje na pořízení samotného zařízení (hardware, licence).
